@@ -1,4 +1,4 @@
-\.metadata/
-\.settings/
+.metadata/
+.settings/
 node_modules/
-\.project
+.project
