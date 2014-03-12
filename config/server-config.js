@@ -1,8 +1,8 @@
 module.exports = {
-        'frontends' : {
-            'web' : new Contour.Core.Server(3000)
+        frontends : {
+            web : new Contour.Core.Frontend.Server(3000)
         },
-        'apis' : {
-            'db' : new Contour.Core.DB.MongoDB.Server(8080)
+        apis : {
+            db : new Contour.Core.DB.MongoDB.Server(8080)
         }
 };

@@ -1,10 +1,13 @@
-Contour = require('contour-fw');
+App     = {};
+require('contour-fw')({
+    basicPath : __dirname
+});
+
 var serverConfig = require(__dirname + '/config/server-config.js');
 
 serverConfig.frontends.web.setIsCurrent(true);
 
 Contour.Core.Bootstrap.setConfig({
-    basicPath : __dirname,
     servers   : serverConfig
 });
 
