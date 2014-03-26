@@ -1,5 +1,5 @@
-module.exports = new Service.ClientScript.Module(
-    "Bootstrap",
+// TODO clientScript
+module.exports = new Module(
     function () {
 
         function Bootstrap() {
