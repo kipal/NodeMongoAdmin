@@ -1,20 +1,14 @@
 // TODO clientScript
 module.exports = new Module(
-    function () {
+    function (ContourBootstrap) {
 
         function Bootstrap() {
-            this.run = function () {
-                console.log("valami");
-            };
+            ContourBootstrap.call(this);
         }
 
-        /* <publish>
-        return new Bootstrap().run();
-        </publish> */
+        Bootstrap.prototype             = ContourBootstrap.prototype;
+        Bootstrap.prototype.constructor = Bootstrap;
 
-        /* <private> */
         return Bootstrap;
-        /* </private> */
-
     }
-);
+).dep("Contour.Core.Bootstrap");
