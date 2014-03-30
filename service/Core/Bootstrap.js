@@ -1,5 +1,7 @@
-// TODO clientScript
-module.exports = new Module(
+module.exports = new Service.ClientScript(
+    "Bootstrap",
+    "Contour.Core.Bootstrap",
+    "public",
     function (ContourBootstrap) {
 
         function Bootstrap() {
