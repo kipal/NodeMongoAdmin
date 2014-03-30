@@ -6,6 +6,10 @@ module.exports = new Service.ClientScript(
 
         function Bootstrap() {
             ContourBootstrap.call(this);
+
+            this.run = function () {
+                // TODO service paths, globalis variables init, etc...
+            };
         }
 
         Bootstrap.prototype             = ContourBootstrap.prototype;
