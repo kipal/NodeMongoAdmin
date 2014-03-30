@@ -2,7 +2,9 @@ require('contour-fw')({
     basePath   : __dirname
 });
 
-global.Service = require("./service/");
+global.Service = {};
+
+global.Service.deepExtend(require("./service/"));
 
 var serverConfig = require(__dirname + '/config/server-config.js');
 
