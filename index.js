@@ -2,9 +2,7 @@ require('contour-fw')({
     basePath   : __dirname
 });
 
-console.log("Service module loading...");
-    global.Service = require("./service/");
-console.log("Service modules are loaded.");
+global.Service = require("./service/");
 
 var serverConfig = require(__dirname + '/config/server-config.js');
 
