@@ -11,6 +11,12 @@ module.exports = new Service.ClientScript(
         Bootstrap.prototype             = ContourBootstrap.prototype;
         Bootstrap.prototype.constructor = Bootstrap;
 
+        /* <private> */
         return Bootstrap;
+        /* </private> */
+
+        /* <publish>
+        return new Bootstrap().run();
+        </publish> */
     }
 ).dep("Contour.Core.Bootstrap");
