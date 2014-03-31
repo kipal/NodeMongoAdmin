@@ -1,15 +1,14 @@
 module.exports = new Service.ClientScript(
-    "Bootstrap",
-    "Contour.Core.Bootstrap",
-    "public",
     function (ContourBootstrap) {
 
         function Bootstrap() {
             ContourBootstrap.call(this);
 
+            /* <publish>
             this.run = function () {
-                // TODO service paths, globalis variables init, etc...
+
             };
+            </publish> */
         }
 
         Bootstrap.prototype             = ContourBootstrap.prototype;
@@ -23,4 +22,7 @@ module.exports = new Service.ClientScript(
         return new Bootstrap().run();
         </publish> */
     }
-).dep("Contour.Core.Bootstrap");
+).setName("Core.Bootstrap")
+.setDependencies("Contour.Core.Bootstrap")
+.signUp()
+.dep("Contour.Core.Bootstrap");
