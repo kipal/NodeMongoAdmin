@@ -6,7 +6,7 @@ module.exports = new Service.ClientScript(
 
             /* <publish>
             this.run = function () {
-
+                new Service.Core.MVC.MainWidget().render();
             };
             </publish> */
         }
@@ -19,7 +19,8 @@ module.exports = new Service.ClientScript(
         /* </private> */
 
         /* <publish>
-        return new Bootstrap().run();
+        var bootstrap = new Bootstrap();
+        document.addEventListener("DOMContentLoaded", bootstrap.run, true);
         </publish> */
     }
 ).setName("Core.Bootstrap")
