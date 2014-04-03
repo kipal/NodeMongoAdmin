@@ -1,8 +1,8 @@
 module.exports = {
     frontend : {
-        web : new Contour.Core.Frontend.Server(
+        web : new Contour.Frontend.Http.Server(
                 3000,
-                new Contour.Core.Frontend.ResponseHandler(Service.ClientScript.getRegister())
+                new Contour.Frontend.Http.ResponseHandler(Service.ClientScript.getRegister())
               )
     },
     api : {

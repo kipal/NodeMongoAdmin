@@ -6,7 +6,7 @@ module.exports = new Service.ClientScript(
 
             /* <publish>
             this.run = function () {
-                new Service.Core.MVC.MainWidget().render();
+                new Contour.Frontend.MVC.BodyWidget().run();
             };
             </publish> */
         }
