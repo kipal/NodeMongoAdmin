@@ -1,12 +1,12 @@
 module.exports = new Service.ClientScript(
-    function (ContourBootstrap) {
+    function (ContourBootstrap, BodyWidget) {
 
         function Bootstrap() {
             ContourBootstrap.call(this);
 
             /* <publish>
             this.run = function () {
-                new Contour.Frontend.MVC.BodyWidget().run();
+                new BodyWidget().run();
             };
             </publish> */
         }
@@ -24,6 +24,6 @@ module.exports = new Service.ClientScript(
         </publish> */
     }
 ).setName("Core.Bootstrap")
-.setDependencies("Contour.Core.Bootstrap")
+.setDependencies(["Contour.Core.Bootstrap", "Frontend.MVC.BodyWidget"])
 .signUp()
-.dep("Contour.Core.Bootstrap");
+.dep("Contour.Core.Bootstrap", "Service.Frontend.MVC.BodyWidget");
