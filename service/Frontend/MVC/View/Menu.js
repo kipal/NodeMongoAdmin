@@ -4,15 +4,17 @@ module.exports = new Service.ClientScript(
         function Menu(actions) {
 
             this.innerHTML = "<ul id='menu'>"
-                + "<li>Datebases</li>"
-                + "<li>Collect</li>"
-                + "</ul>";
+                    + "<li>Datebases</li>"
+                    + "<li>Collect</li>"
+                + "</ul><div class='cls'></div>";
 
             View.call(this, actions);
-
+            this.addStyle(".cls", {
+                "clear" : "both"
+            });
             this.addStyle("#menu", {
                 "background-color" : "red",
-                "list-style" : "none"
+                "list-style"       : "none"
             });
 
             this.addStyle("#menu li", {
