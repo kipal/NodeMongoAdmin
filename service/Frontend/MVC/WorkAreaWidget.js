@@ -1,9 +1,14 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget) {
+    function (CommonWidget, WorkAreaView) {
         function WorkAreaWidget(parentDom, parentWidget) {
 
+            this.createView = function () {
+                WorkAreaView.call(parentDom, this.actions);
+            }.call(this);
+
+
             this.run = function () {
-                this.getView().innerHTML = "WorkArea";
+
             };
 
             CommonWidget.call(this, parentDom, parentWidget);
@@ -16,6 +21,6 @@ module.exports = new Service.ClientScript(
     }
 ).out({
     "name" : "Frontend.MVC.WorkAreaWidget",
-    "dep"  : "Contour.Frontend.MVC.CommonWidget"
-}).dep("Contour.Frontend.MVC.CommonWidget")
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.View.WorkArea"]
+}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.View.WorkArea")
 .signUp();

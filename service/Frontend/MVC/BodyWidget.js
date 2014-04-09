@@ -4,7 +4,7 @@ module.exports = new Service.ClientScript(
         function BodyWidget() {
 
             this.run = function () {
-                var menu = new MenuWidget(this.getView().appendNode("div"), this);
+                var menu = new MenuWidget(this.getView().appendNode("ul"), this);
                 menu.run();
 
                 var workArea = new WorkAreaWidget(this.getView().appendNode("div"), this);
@@ -22,7 +22,7 @@ module.exports = new Service.ClientScript(
 )
 .out({
     "name" : "Frontend.MVC.BodyWidget",
-    "dep"  : ["Contour.Frontend.MVC.BodyWidget", "Frontend.MVC.MenuWidget", "Frontend.MVC.WorkAreaWidget"]
+    "dep"  : ["Contour.Frontend.MVC.BodyWidget", "Frontend.MVC.Menu.MenuWidget", "Frontend.MVC.WorkAreaWidget"]
 })
-.dep("Contour.Frontend.MVC.BodyWidget", "Service.Frontend.MVC.MenuWidget")
+.dep("Contour.Frontend.MVC.BodyWidget", "Service.Frontend.MVC.Menu.MenuWidget")
 .signUp();
