@@ -4,10 +4,24 @@ module.exports = new Service.ClientScript(
         function MenuWidget(parentDom, parentWidget) {
 
             CommonWidget.call(this, parentDom, parentWidget);
+
+            this.getView().id = "menu";
+
             var menus = {
                "database" : new MenuElementWidget("Databases", this.getView().appendNode("li"), this),
-               "collects" : new MenuElementWidget("Collects", this.getView().appendNode("li"), this)
+               "collects" : new MenuElementWidget("Collects", this.getView().appendNode("li"), this),
+               "settings" : new MenuElementWidget("Settings", this.getView().appendNode("li"), this)
             };
+
+            this.getView().addStyle(
+                "#menu",
+                {
+                    "list-style" : "none"
+                }
+            );
+
+            var cls = this.getView().appendNode("div")
+            cls.className = "cls";
 
             this.run = function () {
             };

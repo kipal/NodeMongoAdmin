@@ -3,7 +3,15 @@ module.exports = new Service.ClientScript(
 
         function BodyWidget() {
 
+
             this.run = function () {
+                this.getView().addStyle(
+                        ".cls",
+                        {
+                            "clear" : "both"
+                        }
+                );
+
                 var menu = new MenuWidget(this.getView().appendNode("ul"), this);
                 menu.run();
 

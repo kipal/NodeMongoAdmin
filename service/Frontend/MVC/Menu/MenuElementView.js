@@ -3,8 +3,19 @@ module.exports = new Service.ClientScript(
 
         function MenuElementView(actions) {
 
-
             View.call(this, actions);
+
+            this.className = "menuElem";
+
+            this.addStyle(
+                ".menuElem",
+                {
+                    "border"      : "1px solid black",
+                    "float"       : "left",
+                    "margin-left" : "5px"
+                }
+            );
+
         }
 
         MenuElementView.prototype             = View.prototype;
