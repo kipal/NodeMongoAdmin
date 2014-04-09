@@ -3,7 +3,7 @@ module.exports = new Service.ClientScript(
         function WorkAreaWidget(parentDom, parentWidget) {
 
             this.createView = function () {
-                WorkAreaView.call(parentDom, this.actions);
+                return WorkAreaView.call(parentDom, this.actions);
             }.call(this);
 
 
@@ -12,6 +12,10 @@ module.exports = new Service.ClientScript(
             };
 
             CommonWidget.call(this, parentDom, parentWidget);
+
+            this.setContent = function (content) {
+                this.getView().innerHTML = content;
+            }.bind(this);
         }
 
         WorkAreaWidget.prototype             = CommonWidget.prototype;
@@ -20,7 +24,7 @@ module.exports = new Service.ClientScript(
         return WorkAreaWidget;
     }
 ).out({
-    "name" : "Frontend.MVC.WorkAreaWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.View.WorkArea"]
-}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.View.WorkArea")
+    "name" : "Frontend.MVC.WorkArea.WorkAreaWidget",
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.WorkArea.WorkAreaView"]
+}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.WorkArea.WorkAreaView")
 .signUp();

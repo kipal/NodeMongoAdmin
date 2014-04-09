@@ -15,6 +15,6 @@ module.exports = new Service.ClientScript(
         return WorkArea;
     }
 ).signUp({
-    "name" : "Frontend.MVC.View.WorkArea",
+    "name" : "Frontend.MVC.WorkArea.WorkAreaView",
     "dep"  : "Contour.Core.MVC.View"
 }).dep("Contour.Core.MVC.View");

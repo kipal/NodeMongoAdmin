@@ -6,16 +6,16 @@ module.exports = new Service.ClientScript(
 
             this.run = function () {
                 this.getView().addStyle(
-                        ".cls",
-                        {
-                            "clear" : "both"
-                        }
+                    ".cls",
+                    {
+                        "clear" : "both"
+                    }
                 );
 
-                var menu = new MenuWidget(this.getView().appendNode("ul"), this);
+                var workArea = new WorkAreaWidget(this.getView().appendNode("div"), this);
+                var menu     = new MenuWidget(this.getView().prependNode("ul"), this, workArea.setContent);
                 menu.run();
 
-                var workArea = new WorkAreaWidget(this.getView().appendNode("div"), this);
                 workArea.run();
             };
 
@@ -30,7 +30,7 @@ module.exports = new Service.ClientScript(
 )
 .out({
     "name" : "Frontend.MVC.BodyWidget",
-    "dep"  : ["Contour.Frontend.MVC.BodyWidget", "Frontend.MVC.Menu.MenuWidget", "Frontend.MVC.WorkAreaWidget"]
+    "dep"  : ["Contour.Frontend.MVC.BodyWidget", "Frontend.MVC.Menu.MenuWidget", "Frontend.MVC.WorkArea.WorkAreaWidget"]
 })
 .dep("Contour.Frontend.MVC.BodyWidget", "Service.Frontend.MVC.Menu.MenuWidget")
 .signUp();

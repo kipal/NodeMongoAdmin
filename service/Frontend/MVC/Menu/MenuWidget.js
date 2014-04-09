@@ -1,16 +1,16 @@
 module.exports = new Service.ClientScript(
     function (CommonWidget, MenuElementWidget) {
 
-        function MenuWidget(parentDom, parentWidget) {
+        function MenuWidget(parentDom, parentWidget, workAreaSetContent) {
 
             CommonWidget.call(this, parentDom, parentWidget);
 
             this.getView().id = "menu";
 
             var menus = {
-               "database" : new MenuElementWidget("Databases", this.getView().appendNode("li"), this),
-               "collects" : new MenuElementWidget("Collects", this.getView().appendNode("li"), this),
-               "settings" : new MenuElementWidget("Settings", this.getView().appendNode("li"), this)
+               "database" : new MenuElementWidget("Databases", this.getView().appendNode("li"), this, workAreaSetContent),
+               "collects" : new MenuElementWidget("Collects", this.getView().appendNode("li"), this, workAreaSetContent),
+               "settings" : new MenuElementWidget("Settings", this.getView().appendNode("li"), this, workAreaSetContent)
             };
 
             this.getView().addStyle(

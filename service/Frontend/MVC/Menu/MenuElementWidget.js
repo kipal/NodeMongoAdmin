@@ -1,6 +1,12 @@
 module.exports = new Service.ClientScript(
     function (CommonWidget, MenuElementView) {
-        function MenuElementWidget(name, parentDom, parentWidget) {
+        function MenuElementWidget(name, parentDom, parentWidget, workAreaSetContent) {
+
+            this.actions = {
+                "onclick" : function () {
+                    workAreaSetContent(name);
+                }
+            };
 
             this.createView = function () {
                 MenuElementView.call(parentDom, this.actions);
