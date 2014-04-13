@@ -5,7 +5,7 @@ module.exports = new Service.ClientScript(
 
             View.call(this, actions);
 
-            this.className = "menuElem";
+            this.className = "menuElem link";
 
             this.addStyle(
                 ".menuElem",
