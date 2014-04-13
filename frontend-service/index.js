@@ -2,6 +2,6 @@ var Register         = Contour.Core.ClientScript.Register(new Contour.ClientScri
 Service.ClientScript = Contour.Core.ClientScript.Module(new Register("Service"));
 
 
-console.log("\nService module loading...");
+console.log("\nFrontend service module loading...");
 module.exports = requireDir(module, __dirname);
-console.log("Service modules are loaded.\n");
+console.log("Frontend service modules are loaded.\n");

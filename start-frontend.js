@@ -3,18 +3,19 @@ require('contour-fw')({
 });
 
 global.Service = {
-    basePath : __dirname + "/service"
+    basePath : __dirname + "/frontend-service"
 };
 
-global.Service.deepExtend(require("./service/"));
+global.Service.deepExtend(require("./frontend-service/"));
 
 var serverConfig = require(__dirname + '/config/server-config.js');
 
-serverConfig.frontend.web.setIsCurrent(true);
-
 var bootStrap = new Service.Core.Bootstrap();
-bootStrap.setConfig({
-    servers : serverConfig
-});
+bootStrap.setCurrentServer(
+    new Contour.Frontend.Http.Server(
+        serverConfig.frontend.web.port,
+        new Contour.Frontend.Http.ResponseHandler(Service.ClientScript.getRegister())
+    )
+);
 
 bootStrap.run();
