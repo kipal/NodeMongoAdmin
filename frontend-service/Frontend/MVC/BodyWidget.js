@@ -12,6 +12,13 @@ module.exports = new Service.ClientScript(
                     }
                 );
 
+                this.getView().addStyle(
+                        ".link",
+                        {
+                            "cursor" : "pointer"
+                        }
+                    );
+
                 var workArea = new WorkAreaWidget(this.getView().appendNode("div"), this);
                 var menu     = new MenuWidget(this.getView().prependNode("ul"), this, workArea.setContent);
                 menu.run();
