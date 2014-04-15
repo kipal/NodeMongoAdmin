@@ -11,10 +11,12 @@ global.Service.deepExtend(require("./frontend-service/"));
 var serverConfig = require(__dirname + '/config/server-config.js');
 
 var bootStrap = new Service.Core.Bootstrap();
+var router    = new Contour.Frontend.Http.Router(new Contour.Frontend.Http.RequestHandler());
+
 bootStrap.setCurrentServer(
     new Contour.Frontend.Http.Server(
         serverConfig.frontend.web.port,
-        new Contour.Frontend.Http.ResponseHandler(Service.ClientScript.getRegister())
+        new Contour.Frontend.Http.ResponseHandler(Service.ClientScript.getRegister(), router)
     )
 );
 

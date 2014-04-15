@@ -7,8 +7,14 @@ module.exports = {
     },
     api : {
         mongodb : {
-            port : 3000,
-            host : "localhost"
+            alias : "db",
+            port  : 3000,
+            host  : "localhost",
+            methods : [
+                {
+                    name : "listDatabases"
+                }
+            ]
         }
     }
 };
