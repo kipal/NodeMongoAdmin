@@ -1,5 +1,5 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, MenuElementWidget) {
+    function (CommonWidget, MenuElementWidget, Request) {
 
         function MenuWidget(parentDom, parentWidget, workAreaSetContent) {
 
@@ -12,6 +12,19 @@ module.exports = new Service.ClientScript(
                "collects" : new MenuElementWidget("Collects", this.getView().appendNode("li"), this, workAreaSetContent),
                "settings" : new MenuElementWidget("Settings", this.getView().appendNode("li"), this, workAreaSetContent)
             };
+
+            menus.database.setEvent(
+                "onclick",
+                function() {
+                    this.sendRequest(
+                        new Request("db", "listDatabases"),
+                        function (respText) {
+
+                            workAreaSetContent(respText);
+                        }
+                    );
+                }.bind(menus.database)
+            );
 
             this.getView().addStyle(
                 "#menu",
@@ -33,8 +46,8 @@ module.exports = new Service.ClientScript(
 
         return MenuWidget;
     }
-).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Menu.MenuElementWidget")
+).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Menu.MenuElementWidget", "Contour.Core.Http.Request")
 .out({
     "name" : "Frontend.MVC.Menu.MenuWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.Menu.MenuElementWidget"]
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.Menu.MenuElementWidget", "Contour.Core.Http.Request"]
 }).signUp();

@@ -2,19 +2,20 @@ module.exports = new Service.ClientScript(
     function (CommonWidget, MenuElementView) {
         function MenuElementWidget(name, parentDom, parentWidget, workAreaSetContent) {
 
-            this.actions = {
-                "onclick" : function () {
-                    workAreaSetContent(name);
-                }
-            };
-
             this.createView = function () {
-                MenuElementView.call(parentDom, this.actions);
+                MenuElementView.call(parentDom);
             }.call(this);
 
             CommonWidget.call(this, parentDom, parentWidget)
 
             this.getView().innerHTML = name;
+
+            this.setEvent(
+                "onclick",
+                function () {
+                    workAreaSetContent(name)
+                }
+            );
         }
 
         MenuElementWidget.prototype             = CommonWidget.prototype;

@@ -1,9 +1,9 @@
 module.exports = new Service.ClientScript(
     function (View) {
 
-        function MenuElementView(actions) {
+        function MenuElementView() {
 
-            View.call(this, actions);
+            View.call(this);
 
             this.className = "menuElem link";
 
