@@ -13,6 +13,9 @@ module.exports = {
             methods : [
                 {
                     name : "listDatabases"
+                },
+                {
+                    name : "serverStatus"
                 }
             ]
         }
