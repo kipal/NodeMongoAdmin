@@ -9,9 +9,10 @@ module.exports = new Service.ClientScript(
             this.addStyle(
                  "#workArea",
                  {
-                     "background-image" : this.getImgSrcForCss("jaj.png"),
-                     "height"           : "800px",
-                     "width"            : "1100px"
+                     "border" : "solid 1px black",
+                     "height" : "550px",
+                     "width"  : "1100px",
+                     "float"  : "right"
                  }
             );
         }

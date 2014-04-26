@@ -12,10 +12,6 @@ module.exports = new Service.ClientScript(
             };
 
             CommonWidget.call(this, parentDom, parentWidget);
-
-            this.setContent = function (content) {
-                this.getView().innerHTML = content;
-            }.bind(this);
         }
 
         WorkAreaWidget.prototype             = CommonWidget.prototype;

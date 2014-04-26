@@ -1,17 +1,15 @@
 module.exports = new Service.ClientScript(
-    function (MenuElementWidget, Request) {
-        function DatabaseMenuWidget(parentDom, parentWidget, workAreaSetContent) {
+    function (MenuElementWidget, Mongo) {
+        function DatabaseMenuWidget(parentDom, parentWidget, workAreaView) {
 
             MenuElementWidget.call(this, 'Databases', parentDom, parentWidget);
 
             this.setEvent(
                 "onclick",
                 function() {
-                    this.sendRequest(
-                        new Request("db", "listDatabases"),
-                        function (respText) {
-
-                            workAreaSetContent(respText);
+                    Mongo.getInstance().listDatabases(
+                        function (resp) {
+                            workAreaView.innerHTML = resp;
                         }
                     );
                 }.bind(this)
@@ -25,5 +23,5 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     "name" : "Frontend.MVC.Menu.DatabaseMenuWidget",
-    "dep"  : ["Frontend.MVC.Menu.MenuElementWidget", "Contour.Core.Http.Request"]
-}).dep("Service.Frontend.MVC.Menu.MenuElementWidget", "Contour.Core.Http.Request");
+    "dep"  : ["Frontend.MVC.Menu.MenuElementWidget", "Frontend.MVC.Model.MongoModel"]
+}).dep("Service.Frontend.MVC.Menu.MenuElementWidget", "Service.Frontend.MVC.Model.MongoModel");
