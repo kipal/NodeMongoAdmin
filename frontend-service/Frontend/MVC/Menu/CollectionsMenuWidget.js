@@ -5,10 +5,10 @@ module.exports = new Service.ClientScript(
             MenuElementWidget.call(this, 'Collections', parentDom, parentWidget);
 
             this.run = function () {
-
             };
 
             this.polling = function() {
+                console.log(arguments.callee.caller)
                 Mongo.getInstance().collections(
                     parentWidget.getCurrentDB(),
                     function (resp) {
@@ -16,11 +16,6 @@ module.exports = new Service.ClientScript(
                     }
                 );
             };
-
-            this.setEvent(
-                "onclick",
-                this.polling.bind(this)
-            );
         }
 
         CollectionsMenuWidget.prototype             = MenuElementWidget.prototype;

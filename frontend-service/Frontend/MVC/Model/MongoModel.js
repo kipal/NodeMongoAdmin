@@ -28,6 +28,14 @@ module.exports = new Service.ClientScript(
                 sendRequest("serverStatus", callback);
             };
 
+            this.findAll = function (paramObject, callback) {
+                sendRequest(
+                    "findAll",
+                    callback,
+                    paramObject
+                );
+            };
+
             instance = this;
         }
 

@@ -1,12 +1,13 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, CollectionsMenuWidget) {
+    function (CommonWidget, CollectionsMenuWidget, DataMenuWidget) {
 
         function MenuWidget(parentDom, parentWidget, workAreaView) {
 
             CommonWidget.call(this, parentDom, parentWidget);
 
             var menus = {
-               "collections" : new CollectionsMenuWidget(this.getView().appendNode("li"), this, workAreaView)
+               "collections" : new CollectionsMenuWidget(this.getView().appendNode("li"), this, workAreaView),
+               "data"        : new DataMenuWidget(this.getView().appendNode("li"), this, workAreaView)
             };
 
 
@@ -14,13 +15,20 @@ module.exports = new Service.ClientScript(
 
             this.setCurrentDatabase = function (dbName) {
                 currentDB = dbName;
-                menus.collections.polling();
+                menus.collections.setActive();
             };
 
             this.getCurrentDB = function () {
                 return currentDB;
             };
 
+            this.setOthersInactive = function (element) {
+                for (var i in menus) {
+                    if (element !== menus[i]) {
+                        menus[i].setInactive();
+                    }
+                }
+            };
 
             this.run = function () {
                 this.getView().id = "menu";
@@ -49,5 +57,9 @@ module.exports = new Service.ClientScript(
 ).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Menu.CollectionsMenuWidget")
 .out({
     "name" : "Frontend.MVC.Menu.MenuWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.Menu.CollectionsMenuWidget"]
+    "dep"  : [
+          "Contour.Frontend.MVC.CommonWidget",
+          "Frontend.MVC.Menu.CollectionsMenuWidget",
+          "Frontend.MVC.Menu.DataMenuWidget"
+    ]
 }).signUp();

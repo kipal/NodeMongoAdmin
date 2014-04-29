@@ -6,15 +6,30 @@ module.exports = new Service.ClientScript(
                 MenuElementView.call(parentDom);
             }.call(this);
 
-            CommonWidget.call(this, parentDom, parentWidget)
+            CommonWidget.call(this, parentDom, parentWidget);
 
             this.getView().innerHTML = name;
+
+            this.polling = function (workAreaFn) {
+                throw 'MenuElementWidget::polling() is abstract!';
+            };
+
+            this.setActive = function () {
+                parentWidget.setOthersInactive(this);
+                this.getView().style.backgroundColor = "blue";
+
+                this.polling(workAreaSetContent);
+            };
+
+            this.setInactive = function () {
+                this.getView().style.backgroundColor = "inherit";
+            };
 
             this.setEvent(
                 "onclick",
                 function () {
-                    workAreaSetContent(name)
-                }
+                    this.setActive();
+                }.bind(this)
             );
         }
 
