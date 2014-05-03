@@ -7,7 +7,7 @@ module.exports = new Service.ClientScript(
             this.run = function () {
                 this.getView().addStyle(
                     "body", {
-                        "background-color" : "lightgrey"
+                        "background-color" : "#fff"
                     }
                 );
                 this.getView().addStyle(
@@ -39,7 +39,7 @@ module.exports = new Service.ClientScript(
 
                 var workArea = new WorkAreaWidget(workView, this);
                 var menu     = new MenuWidget(menuView, this, workArea.getView());
-                var leftMenu = new LeftMenuWidget(leftMenuView, this, menu.setCurrentDatabase);
+                var leftMenu = new LeftMenuWidget(leftMenuView, this, menu.setCurrentDatabase, workArea.getView());
 
                 leftMenu.run();
                 menu.run();

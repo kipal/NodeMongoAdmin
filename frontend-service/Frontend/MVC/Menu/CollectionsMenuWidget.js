@@ -8,13 +8,12 @@ module.exports = new Service.ClientScript(
             };
 
             this.polling = function() {
-                console.log(arguments.callee.caller)
-                Mongo.getInstance().collections(
+                /*Mongo.getInstance().collections(
                     parentWidget.getCurrentDB(),
                     function (resp) {
                         workAreaView.innerHTML = (resp);
                     }
-                );
+                );*/
             };
         }
 

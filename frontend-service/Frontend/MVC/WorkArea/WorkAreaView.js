@@ -9,10 +9,10 @@ module.exports = new Service.ClientScript(
             this.addStyle(
                  "#workArea",
                  {
-                     "border" : "solid 1px black",
-                     "height" : "550px",
-                     "width"  : "1100px",
-                     "float"  : "right"
+                     "border"     : "solid 1px black",
+                     "min-height" : "550px",
+                     "width"      : "1100px",
+                     "float"      : "right"
                  }
             );
         }

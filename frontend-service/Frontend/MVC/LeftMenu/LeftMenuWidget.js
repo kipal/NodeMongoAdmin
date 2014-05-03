@@ -1,7 +1,7 @@
 module.exports = new Service.ClientScript(
     function (CommonWidget, LeftMenuElementWidget, Mongo) {
 
-        function LeftMenuWidget(parentDom, parentWidget, setCurrentDB) {
+        function LeftMenuWidget(parentDom, parentWidget, setCurrentDB, workAreaView) {
 
             CommonWidget.call(this, parentDom, parentWidget);
 
@@ -26,7 +26,6 @@ module.exports = new Service.ClientScript(
             }.bind(this);
 
             this.setActiveDB = function (dbName) {
-                setCurrentDB(dbName);
                 for (var i in leftMenus) {
                     if (dbName !== i) {
                         leftMenus[i].setInactive();
@@ -34,16 +33,21 @@ module.exports = new Service.ClientScript(
                 }
             };
 
-            this.run = function () {
-                this.getView().id = "leftMenu";
+            this.getWorkAreaView = function () {
+                return workAreaView;
+            };
 
+            this.run = function () {
+                this.getView().id        = "leftMenu";
+                this.getView().className = "navbar nav navbar-inverse container";
                 this.getView().addStyle(
-                        "#leftMenu",
-                        {
-                            "float"  : "left",
-                            "height" : "100%",
-                            "width"  : "140px"
-                        }
+                    "#leftMenu",
+                    {
+                        "float"  : "left",
+                        "height" : "100%",
+                        "width"  : "200px",
+                        "color"  : "grey"
+                    }
                 );
 
                 loadDatabases();

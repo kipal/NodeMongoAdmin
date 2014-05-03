@@ -1,7 +1,7 @@
 module.exports = new Service.ClientScript(
     function (View) {
 
-        function LeftMenuElementView() {
+        function LeftMenuElementView(name) {
 
             View.call(this);
 
@@ -14,13 +14,15 @@ module.exports = new Service.ClientScript(
                 }
             );
 
+            this.nameNode = this.appendNode("span");
+            this.nameNode.innerHTML = "+ " + name;
 
             this.setActive = function () {
-                this.style.backgroundColor = "blue";
+                this.nameNode.style.color = "white";
             };
 
             this.setInactive = function () {
-                this.style.backgroundColor = "inherit";
+                this.nameNode.style.color = "inherit";
             };
         }
 

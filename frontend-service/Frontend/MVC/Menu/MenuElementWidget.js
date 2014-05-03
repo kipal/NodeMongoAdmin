@@ -16,13 +16,13 @@ module.exports = new Service.ClientScript(
 
             this.setActive = function () {
                 parentWidget.setOthersInactive(this);
-                this.getView().style.backgroundColor = "blue";
+                this.getView().style.color = "white";
 
                 this.polling(workAreaSetContent);
             };
 
             this.setInactive = function () {
-                this.getView().style.backgroundColor = "inherit";
+                this.getView().style.color = "inherit";
             };
 
             this.setEvent(

@@ -1,3 +1,4 @@
+
 module.exports = new Service.ClientScript(
     function (View) {
 
@@ -10,7 +11,6 @@ module.exports = new Service.ClientScript(
             this.addStyle(
                 ".menuElem",
                 {
-                    "border"      : "1px solid black",
                     "float"       : "left",
                     "margin-left" : "5px"
                 }

@@ -31,12 +31,13 @@ module.exports = new Service.ClientScript(
             };
 
             this.run = function () {
-                this.getView().id = "menu";
+                this.getView().id        = "menu";
+                this.getView().className = "navbar nav navbar-inverse";
                 this.getView().addStyle(
-                        "#menu",
-                        {
-                            "list-style" : "none"
-                        }
+                    "#menu",
+                    {
+                        "color" : "grey"
+                    }
                 );
 
                 var cls = this.getView().appendNode("div");

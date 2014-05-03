@@ -36,6 +36,30 @@ module.exports = new Service.ClientScript(
                 );
             };
 
+            this.removeById = function (paramObject, callback) {
+                sendRequest(
+                    "removeById",
+                    callback,
+                    paramObject
+                );
+            };
+
+            this.updateById = function (paramObject, callback) {
+                sendRequest(
+                    "updateById",
+                    callback,
+                    paramObject
+                );
+            };
+
+            this.save = function (paramObject, callback) {
+                sendRequest(
+                    "save",
+                    callback,
+                    paramObject
+                );
+            };
+
             instance = this;
         }
 

@@ -1,18 +1,54 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, LeftMenuElementView) {
+    function (CommonWidget, LeftMenuElementView, LeftSubMenuElementWidget, MongoModel) {
         function LeftMenuElementWidget(name, parentDom, parentWidget) {
 
             this.createView = function () {
-                LeftMenuElementView.call(parentDom);
+                LeftMenuElementView.call(parentDom, name);
             }.call(this);
 
             CommonWidget.call(this, parentDom, parentWidget);
 
-            this.run = function () {
-
+            this.getName = function () {
+                return name;
             };
 
-            this.getView().innerHTML = name;
+            this.getWorkAreaView = function () {
+                return parentWidget.getWorkAreaView();
+            };
+
+            this.run = function () {
+                this.getView().nameNode.onclick = function () {
+                    this.addCollections();
+                    this.setActive();
+                }.bind(this);
+            };
+
+            this.addCollections = function () {
+                MongoModel.getInstance().collections(
+                    name,
+                    function (resp) {
+                        this.loadCollectionList(resp);
+                    }.bind(this)
+                );
+            };
+
+            var collectionListNode = null;
+            var collectionList = [];
+
+            this.loadCollectionList = function (collections) {
+                if (null === collectionListNode) {
+                    collectionListNode = this.getView().appendNode("ul");
+                    LeftMenuElementView.call(collectionListNode);
+                }
+
+                collectionListNode.innerHTML = "";
+
+                for (var i in collections) {
+                    var tmp = new LeftSubMenuElementWidget(collections[i], collectionListNode.appendNode("li"), this);
+                    collectionList.push(tmp)
+                    tmp.run();
+                }
+            };
 
             this.setActive = function () {
                 parentWidget.setActiveDB(name);
@@ -23,12 +59,13 @@ module.exports = new Service.ClientScript(
                 this.getView().setInactive();
             };
 
-            this.setEvent(
-                "onclick",
-                function () {
-                    this.setActive();
-                }.bind(this)
-            );
+            this.setAllInactive = function (collectionWidget) {
+                for (var i in collectionList) {
+                    if (collectionWidget !== collectionList[i]) {
+                        collectionList[i].setInactive();
+                    }
+                }
+            };
         }
 
         LeftMenuElementWidget.prototype             = CommonWidget.prototype;
@@ -38,5 +75,5 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     "name" : "Frontend.MVC.LeftMenu.LeftMenuElementWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.LeftMenu.LeftMenuElementView"]
-}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.LeftMenu.LeftMenuElementView");
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.LeftMenu.LeftMenuElementView", "Frontend.MVC.LeftMenu.LeftSubMenuElementWidget", "Frontend.MVC.Model.MongoModel"]
+}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.LeftMenu.LeftMenuElementView", "Service.Frontend.MVC.LeftMenu.LeftSubMenuElementWidget", "Service.Frontend.MVC.Model.MongoModel");
