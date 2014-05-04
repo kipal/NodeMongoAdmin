@@ -21,6 +21,10 @@ module.exports = new Service.ClientScript(
                     this.addCollections();
                     this.setActive();
                 }.bind(this);
+
+                this.getView().minusNode.ondblclick = function () {
+                    this.removeDB();
+                }.bind(this);
             };
 
             this.addCollections = function () {
@@ -65,6 +69,19 @@ module.exports = new Service.ClientScript(
                         collectionList[i].setInactive();
                     }
                 }
+            };
+
+            this.removeDB = function () {
+                MongoModel.getInstance().dropDB(
+                    {
+                        dbName : this.getName()
+                    },
+                    function (resp) {
+                        if (true === resp) {
+                            location.reload();
+                        }
+                    }.bind(this)
+                );
             };
         }
 

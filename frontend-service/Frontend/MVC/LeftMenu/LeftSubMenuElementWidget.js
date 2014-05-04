@@ -34,7 +34,7 @@ module.exports = new Service.ClientScript(
                 );
             };
 
-            this.setEvent(
+            this.getView().nameNode.setEvent(
                 "onclick",
                 this.browse.bind(this)
             );

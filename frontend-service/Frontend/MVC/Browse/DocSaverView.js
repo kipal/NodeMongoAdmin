@@ -35,6 +35,7 @@ module.exports = new Service.ClientScript(
 
             var box = this.appendNode("table");
             box.style.border = "1px solid grey";
+            box.style.marginTop = "15px";
 
             var addField = function () {
                 var row = box.appendNode("tr");

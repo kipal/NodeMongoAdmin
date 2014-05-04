@@ -60,6 +60,14 @@ module.exports = new Service.ClientScript(
                 );
             };
 
+            this.dropDB = function (paramObject, callback) {
+                sendRequest(
+                    "dropDB",
+                    callback,
+                    paramObject
+                );
+            };
+
             instance = this;
         }
 

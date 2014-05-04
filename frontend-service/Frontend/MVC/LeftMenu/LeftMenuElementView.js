@@ -15,7 +15,13 @@ module.exports = new Service.ClientScript(
             );
 
             this.nameNode = this.appendNode("span");
-            this.nameNode.innerHTML = "+ " + name;
+            this.nameNode.innerHTML = ">> " + name;
+
+            this.minusNode = this.appendNode("button");
+            this.minusNode.style.backgroundColor = "#222";
+            this.minusNode.style.border          = "none";
+            this.minusNode.style.marginLeft      = "5px";
+            this.minusNode.innerHTML = "-";
 
             this.setActive = function () {
                 this.nameNode.style.color = "white";
