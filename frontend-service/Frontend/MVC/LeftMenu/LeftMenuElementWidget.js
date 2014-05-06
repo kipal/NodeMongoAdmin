@@ -25,6 +25,7 @@ module.exports = new Service.ClientScript(
                 this.getView().minusNode.ondblclick = function () {
                     this.removeDB();
                 }.bind(this);
+
             };
 
             this.addCollections = function () {
@@ -41,7 +42,7 @@ module.exports = new Service.ClientScript(
 
             this.loadCollectionList = function (collections) {
                 if (null === collectionListNode) {
-                    collectionListNode = this.getView().appendNode("ul");
+                    collectionListNode = this.getView().collectionList;
                     LeftMenuElementView.call(collectionListNode);
                 }
 
@@ -49,7 +50,7 @@ module.exports = new Service.ClientScript(
 
                 for (var i in collections) {
                     var tmp = new LeftSubMenuElementWidget(collections[i], collectionListNode.appendNode("li"), this);
-                    collectionList.push(tmp)
+                    collectionList.push(tmp);
                     tmp.run();
                 }
             };

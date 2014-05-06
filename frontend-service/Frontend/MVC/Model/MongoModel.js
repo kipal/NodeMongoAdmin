@@ -68,6 +68,14 @@ module.exports = new Service.ClientScript(
                 );
             };
 
+            this.addDatabase = function (name, callback) {
+                sendRequest(
+                    "addDB",
+                    callback,
+                    name
+                );
+            };
+
             instance = this;
         }
 

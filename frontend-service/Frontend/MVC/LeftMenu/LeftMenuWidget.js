@@ -33,6 +33,15 @@ module.exports = new Service.ClientScript(
                 }
             };
 
+            this.addDB = function () {
+                Mongo.getInstance().addDatabase(
+                    this.getView().newDBName.value,
+                    function (resp) {
+                        location.reload();
+                    }.bind(this)
+                );
+            };
+
             this.getWorkAreaView = function () {
                 return workAreaView;
             };
@@ -51,6 +60,15 @@ module.exports = new Service.ClientScript(
                 );
 
                 loadDatabases();
+
+                this.getView().newDBName = this.getView().appendNode("input");
+
+                this.getView().plusCollection = this.getView().appendNode("button");
+                this.getView().plusCollection.style.backgroundColor = "#222";
+                this.getView().plusCollection.style.border          = "none";
+                this.getView().plusCollection.style.marginLeft      = "5px";
+                this.getView().plusCollection.innerHTML             = "+";
+                this.getView().plusCollection.onclick = this.addDB.bind(this);
             };
 
         }

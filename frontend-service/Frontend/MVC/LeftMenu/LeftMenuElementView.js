@@ -21,7 +21,10 @@ module.exports = new Service.ClientScript(
             this.minusNode.style.backgroundColor = "#222";
             this.minusNode.style.border          = "none";
             this.minusNode.style.marginLeft      = "5px";
-            this.minusNode.innerHTML = "-";
+            this.minusNode.innerHTML             = "-";
+
+            this.collectionList = this.appendNode("ul");
+
 
             this.setActive = function () {
                 this.nameNode.style.color = "white";
