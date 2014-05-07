@@ -5,7 +5,7 @@ module.exports = new Service.ClientScript(
 
             this.createView = function () {
                 DocSaverView.call(parentDom);
-            }.call(this);
+            }.bind(this);
 
             CommonWidget.call(this, parentDom, parentWidget);
 

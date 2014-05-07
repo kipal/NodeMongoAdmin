@@ -4,10 +4,24 @@ module.exports = new Service.ClientScript(
 
             this.createView = function () {
                 LeftMenuElementView.call(parentDom, name);
-            }.call(this);
+            }.bind(this);
 
             this.run = function () {
+                this.getView().minusNode.ondblclick = function () {
+                    this.removeCollection();
+                }.bind(this);
+            };
 
+            this.removeCollection = function () {
+                MongoModel.getInstance().removeCollection(
+                    {
+                        dbName         : parentWidget.getName(),
+                        collectionName : name
+                    },
+                    function (resp) {
+                        parentWidget.addCollections();
+                    }
+                );
             };
 
             CommonWidget.call(this, parentDom, parentWidget);
@@ -42,6 +56,7 @@ module.exports = new Service.ClientScript(
             this.setActive = function () {
                 this.getView().setActive();
                 parentWidget.setAllInactive(this);
+                parentWidget.setActive();
             };
 
             this.setInactive = function () {

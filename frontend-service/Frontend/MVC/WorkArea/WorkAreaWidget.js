@@ -4,7 +4,7 @@ module.exports = new Service.ClientScript(
 
             this.createView = function () {
                 return WorkAreaView.call(parentDom, this.actions);
-            }.call(this);
+            }.bind(this);
 
 
             this.run = function () {

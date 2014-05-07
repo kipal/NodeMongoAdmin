@@ -1,10 +1,10 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, LeftMenuElementView, LeftSubMenuElementWidget, MongoModel) {
+    function (CommonWidget, LeftMenuElementView, LeftSubMenuElementWidget, MongoModel, InputNode) {
         function LeftMenuElementWidget(name, parentDom, parentWidget) {
 
             this.createView = function () {
                 LeftMenuElementView.call(parentDom, name);
-            }.call(this);
+            }.bind(this);
 
             CommonWidget.call(this, parentDom, parentWidget);
 
@@ -33,6 +33,35 @@ module.exports = new Service.ClientScript(
                     name,
                     function (resp) {
                         this.loadCollectionList(resp);
+                        this.addNewCollectionInput();
+                    }.bind(this)
+                );
+            };
+
+            this.addNewCollectionInput = function () {
+                var lastListItem = this.getView().collectionList.appendNode("li");
+                lastListItem.className = "leftMenuElem";
+                this.getView().newCollection = lastListItem.appendNode("input", InputNode);
+                this.getView().newCollection.setPlaceHolder("New collection");
+                this.getView().newCollection.style.fontSize = "10px";
+
+                var plusCollection = lastListItem.appendNode("button");
+                plusCollection.style.backgroundColor = "#222";
+                plusCollection.style.border          = "none";
+                plusCollection.style.marginLeft      = "5px";
+                plusCollection.innerHTML             = "+";
+                plusCollection.onclick               = this.addCollection.bind(this);
+            };
+
+            this.addCollection = function () {
+                MongoModel.getInstance().addCollection(
+                    {
+                        "dbName"         : this.getName(),
+                        "collectionName" : this.getView().newCollection.value
+                    },
+                    function (resp) {
+                        this.addCollections();
+                        this.addNewCollectionInput();
                     }.bind(this)
                 );
             };
@@ -62,6 +91,9 @@ module.exports = new Service.ClientScript(
 
             this.setInactive = function () {
                 this.getView().setInactive();
+                for (var i in collectionList) {
+                    collectionList[i].setInactive();
+                }
             };
 
             this.setAllInactive = function (collectionWidget) {
@@ -93,5 +125,17 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     "name" : "Frontend.MVC.LeftMenu.LeftMenuElementWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.LeftMenu.LeftMenuElementView", "Frontend.MVC.LeftMenu.LeftSubMenuElementWidget", "Frontend.MVC.Model.MongoModel"]
-}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.LeftMenu.LeftMenuElementView", "Service.Frontend.MVC.LeftMenu.LeftSubMenuElementWidget", "Service.Frontend.MVC.Model.MongoModel");
+    "dep"  : [
+        "Contour.Frontend.MVC.CommonWidget",
+        "Frontend.MVC.LeftMenu.LeftMenuElementView",
+        "Frontend.MVC.LeftMenu.LeftSubMenuElementWidget",
+        "Frontend.MVC.Model.MongoModel",
+        "Frontend.MVC.Common.InputNode"
+    ]
+}).dep(
+    "Contour.Frontend.MVC.CommonWidget",
+    "Service.Frontend.MVC.LeftMenu.LeftMenuElementView",
+    "Service.Frontend.MVC.LeftMenu.LeftSubMenuElementWidget",
+    "Service.Frontend.MVC.Model.MongoModel",
+    "Service.Frontend.MVC.Common.InputNode"
+);

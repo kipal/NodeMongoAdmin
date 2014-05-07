@@ -1,20 +1,26 @@
-
 module.exports = new Service.ClientScript(
     function (View) {
 
         function MenuElementView() {
 
+
             View.call(this);
 
-            this.className = "menuElem link";
+            this.setContent = function (content) {
+                nameLink.setContent(content);
+            };
 
-            this.addStyle(
-                ".menuElem",
-                {
-                    "float"       : "left",
-                    "margin-left" : "5px"
-                }
-            );
+            var nameLink = this.appendNode("a");
+            nameLink.href = "#";
+
+            this.setActive = function () {
+                this.className = "active";
+            };
+
+            this.setInactive = function () {
+                this.className = nameLink.className.replace("active", "");
+            };
+
 
         }
 

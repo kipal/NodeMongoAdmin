@@ -1,5 +1,5 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, LeftMenuElementWidget, Mongo) {
+    function (CommonWidget, LeftMenuElementWidget, Mongo, InputNode) {
 
         function LeftMenuWidget(parentDom, parentWidget, setCurrentDB, workAreaView) {
 
@@ -54,14 +54,16 @@ module.exports = new Service.ClientScript(
                     {
                         "float"  : "left",
                         "height" : "100%",
-                        "width"  : "200px",
+                        "width"  : "250px",
                         "color"  : "grey"
                     }
                 );
 
                 loadDatabases();
 
-                this.getView().newDBName = this.getView().appendNode("input");
+                this.getView().newDBName = this.getView().appendNode("input", InputNode);
+                this.getView().newDBName.setPlaceHolder("New database");
+                this.getView().newDBName.style.fontSize = "10px";
 
                 this.getView().plusCollection = this.getView().appendNode("button");
                 this.getView().plusCollection.style.backgroundColor = "#222";
@@ -78,8 +80,17 @@ module.exports = new Service.ClientScript(
 
         return LeftMenuWidget;
     }
-).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.LeftMenu.LeftMenuElementWidget", "Service.Frontend.MVC.Model.MongoModel")
-.signUp({
+).dep(
+    "Contour.Frontend.MVC.CommonWidget",
+    "Service.Frontend.MVC.LeftMenu.LeftMenuElementWidget",
+    "Service.Frontend.MVC.Model.MongoModel",
+    "Service.Frontend.MVC.Common.InputNode"
+).signUp({
     "name" : "Frontend.MVC.LeftMenu.LeftMenuWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.LeftMenu.LeftMenuElementWidget", "Frontend.MVC.Model.MongoModel"]
+    "dep"  : [
+        "Contour.Frontend.MVC.CommonWidget",
+        "Frontend.MVC.LeftMenu.LeftMenuElementWidget",
+        "Frontend.MVC.Model.MongoModel",
+        "Frontend.MVC.Common.InputNode",
+    ]
 });

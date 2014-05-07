@@ -4,10 +4,6 @@ module.exports = new Service.ClientScript(
 
             MenuElementWidget.call(this, 'Data', parentDom, parentWidget);
 
-            this.run = function () {
-
-            };
-
             this.polling = function() {
                 Mongo.getInstance().findAll(
                     {

@@ -11,7 +11,7 @@ module.exports = new Service.ClientScript(
                  {
                      "border"     : "solid 1px black",
                      "min-height" : "550px",
-                     "width"      : "1100px",
+                     "width"      : "1000px",
                      "float"      : "right"
                  }
             );

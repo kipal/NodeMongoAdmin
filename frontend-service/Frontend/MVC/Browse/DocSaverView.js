@@ -1,5 +1,5 @@
 module.exports = new Service.ClientScript(
-    function (View) {
+    function (View, InputNode) {
 
         function DocSaverView() {
 
@@ -39,8 +39,10 @@ module.exports = new Service.ClientScript(
 
             var addField = function () {
                 var row = box.appendNode("tr");
-                var keyInput   = row.appendNode("td").appendNode("input");
-                var valueInput = row.appendNode("td").appendNode("input");
+                var keyInput   = row.appendNode("td").appendNode("input", InputNode);
+                keyInput.setPlaceHolder("New key");
+                var valueInput = row.appendNode("td").appendNode("input", InputNode);
+                valueInput.setPlaceHolder("New value");
                 var minus      = row.appendNode("td").appendNode("button");
 
                 minus.innerHTML = "-";
@@ -94,6 +96,6 @@ module.exports = new Service.ClientScript(
 )
 .signUp({
     "name" : "Frontend.MVC.Browse.DocSaverView",
-    "dep"  : "Contour.Frontend.MVC.View"
+    "dep"  : ["Contour.Frontend.MVC.View", "Frontend.MVC.Common.InputNode"]
 })
-.dep("Contour.Frontend.MVC.View");
+.dep("Contour.Frontend.MVC.View", "Service.Frontend.MVC.Common.InputNode");

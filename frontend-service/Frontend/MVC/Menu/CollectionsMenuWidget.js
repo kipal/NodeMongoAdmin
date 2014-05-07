@@ -4,9 +4,6 @@ module.exports = new Service.ClientScript(
 
             MenuElementWidget.call(this, 'Collections', parentDom, parentWidget);
 
-            this.run = function () {
-            };
-
             this.polling = function() {
                 /*Mongo.getInstance().collections(
                     parentWidget.getCurrentDB(),

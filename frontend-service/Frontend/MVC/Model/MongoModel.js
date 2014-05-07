@@ -76,6 +76,22 @@ module.exports = new Service.ClientScript(
                 );
             };
 
+            this.addCollection = function (param, callback) {
+                sendRequest(
+                    "addCollection",
+                    callback,
+                    param
+                );
+            };
+
+            this.removeCollection = function (param, callback) {
+                sendRequest(
+                    "removeCollection",
+                    callback,
+                    param
+                );
+            };
+
             instance = this;
         }
 

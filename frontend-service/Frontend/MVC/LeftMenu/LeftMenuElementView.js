@@ -25,7 +25,6 @@ module.exports = new Service.ClientScript(
 
             this.collectionList = this.appendNode("ul");
 
-
             this.setActive = function () {
                 this.nameNode.style.color = "white";
             };
@@ -43,6 +42,6 @@ module.exports = new Service.ClientScript(
 )
 .signUp({
     "name" : "Frontend.MVC.LeftMenu.LeftMenuElementView",
-    "dep"  : "Contour.Frontend.MVC.View"
+    "dep"  : ["Contour.Frontend.MVC.View"]
 })
 .dep("Contour.Frontend.MVC.View");

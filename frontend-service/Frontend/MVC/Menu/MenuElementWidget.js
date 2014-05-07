@@ -4,11 +4,13 @@ module.exports = new Service.ClientScript(
 
             this.createView = function () {
                 MenuElementView.call(parentDom);
-            }.call(this);
+            }.bind(this);
 
             CommonWidget.call(this, parentDom, parentWidget);
 
-            this.getView().innerHTML = name;
+            this.run = function () {
+                this.getView().setContent(name);
+            };
 
             this.polling = function (workAreaFn) {
                 throw 'MenuElementWidget::polling() is abstract!';
@@ -16,20 +18,18 @@ module.exports = new Service.ClientScript(
 
             this.setActive = function () {
                 parentWidget.setOthersInactive(this);
-                this.getView().style.color = "white";
+                this.getView().setActive();
 
                 this.polling(workAreaSetContent);
             };
 
             this.setInactive = function () {
-                this.getView().style.color = "inherit";
+                this.getView().setInactive();
             };
 
             this.setEvent(
                 "onclick",
-                function () {
-                    this.setActive();
-                }.bind(this)
+                this.setActive.bind(this)
             );
         }
 
