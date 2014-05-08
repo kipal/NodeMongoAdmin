@@ -8,7 +8,7 @@ global.Service = {
 
 global.Service.deepExtend(require("./frontend-service/"));
 
-var serverConfig = require(__dirname + '/config/server-config.js');
+var serverConfig = require(__dirname + '/config/NodeMongoAdmin-CONFIG/server-config.js');
 
 var bootStrap  = new Service.Core.Bootstrap();
 var reqHandler = new Contour.Frontend.Http.RequestHandler();
