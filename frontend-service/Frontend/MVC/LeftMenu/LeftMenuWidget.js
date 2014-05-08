@@ -54,7 +54,7 @@ module.exports = new Service.ClientScript(
                     {
                         "float"  : "left",
                         "height" : "100%",
-                        "width"  : "250px",
+                        "width"  : "22%",
                         "color"  : "grey"
                     }
                 );

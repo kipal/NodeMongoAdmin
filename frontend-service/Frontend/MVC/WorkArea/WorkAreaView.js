@@ -10,8 +10,8 @@ module.exports = new Service.ClientScript(
                  "#workArea",
                  {
                      "border"     : "solid 1px black",
-                     "min-height" : "550px",
-                     "width"      : "1000px",
+                     "height"     : "500px",
+                     "width"      : "75%",
                      "float"      : "right"
                  }
             );
