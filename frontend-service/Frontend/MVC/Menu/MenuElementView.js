@@ -33,5 +33,4 @@ module.exports = new Service.ClientScript(
 .signUp({
     "name" : "Frontend.MVC.Menu.MenuElementView",
     "dep"  : "Contour.Frontend.MVC.View"
-})
-.dep("Contour.Frontend.MVC.View");
+});

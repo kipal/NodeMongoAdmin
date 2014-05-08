@@ -73,13 +73,8 @@ module.exports = new Service.ClientScript(
     "name" : "Frontend.MVC.LeftMenu.LeftSubMenuElementWidget",
     "dep"  : [
         "Contour.Frontend.MVC.CommonWidget",
-        "Frontend.MVC.LeftMenu.LeftMenuElementView",
-        "Frontend.MVC.Model.MongoModel",
-        "Frontend.MVC.Browse.DocListWidget"
+        "Service.Frontend.MVC.LeftMenu.LeftMenuElementView",
+        "Service.Frontend.MVC.Model.MongoModel",
+        "Service.Frontend.MVC.Browse.DocListWidget"
     ]
-}).dep(
-    "Contour.Frontend.MVC.CommonWidget",
-    "Service.Frontend.MVC.LeftMenu.LeftMenuElementView",
-    "Service.Frontend.MVC.Model.MongoModel",
-    "Service.Frontend.MVC.Browse.DocListWidget"
-);
+});

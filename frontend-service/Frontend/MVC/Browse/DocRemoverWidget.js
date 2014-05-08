@@ -37,7 +37,5 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     name : "Frontend.MVC.Browse.DocRemoverWidget",
-    dep  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.Model.MongoModel"]
-}).dep(
-    "Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Model.MongoModel"
-);
+    dep  : ["Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Model.MongoModel"]
+});

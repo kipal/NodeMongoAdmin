@@ -45,8 +45,7 @@ module.exports = new Service.ClientScript(
 
         return DocListWidget;
     }
-).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Browse.DocWidget", "Service.Frontend.MVC.Browse.DocSaverWidget")
-.signUp({
+).signUp({
     "name" : "Frontend.MVC.Browse.DocListWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.Browse.DocWidget", "Frontend.MVC.Browse.DocSaverWidget"]
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Browse.DocWidget", "Service.Frontend.MVC.Browse.DocSaverWidget"]
 });

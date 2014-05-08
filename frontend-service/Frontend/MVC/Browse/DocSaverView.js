@@ -96,6 +96,5 @@ module.exports = new Service.ClientScript(
 )
 .signUp({
     "name" : "Frontend.MVC.Browse.DocSaverView",
-    "dep"  : ["Contour.Frontend.MVC.View", "Frontend.MVC.Common.InputNode"]
-})
-.dep("Contour.Frontend.MVC.View", "Service.Frontend.MVC.Common.InputNode");
+    "dep"  : ["Contour.Frontend.MVC.View", "Service.Frontend.MVC.Common.InputNode"]
+});

@@ -87,5 +87,4 @@ module.exports = new Service.ClientScript(
 .signUp({
     "name" : "Frontend.MVC.Browse.DocView",
     "dep"  : "Contour.Frontend.MVC.View"
-})
-.dep("Contour.Frontend.MVC.View");
+});

@@ -105,4 +105,4 @@ module.exports = new Service.ClientScript(
 ).signUp({
     name : "Frontend.MVC.Model.MongoModel",
     dep  : ["Contour.Core.Http.Request", "Contour.Frontend.Http.RequestHandler"]
-}).dep("Contour.Core.Http.Request", "Contour.Frontend.Http.RequestHandler");
+});

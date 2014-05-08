@@ -132,10 +132,4 @@ module.exports = new Service.ClientScript(
         "Service.Frontend.MVC.Model.MongoModel",
         "Service.Frontend.MVC.Common.InputNode"
     ]
-}).dep(
-    "Contour.Frontend.MVC.CommonWidget",
-    "Service.Frontend.MVC.LeftMenu.LeftMenuElementView",
-    "Service.Frontend.MVC.LeftMenu.LeftSubMenuElementWidget",
-    "Service.Frontend.MVC.Model.MongoModel",
-    "Service.Frontend.MVC.Common.InputNode"
-);
+});

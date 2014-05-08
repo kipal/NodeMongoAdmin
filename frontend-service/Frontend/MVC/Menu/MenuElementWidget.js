@@ -40,5 +40,5 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     "name" : "Frontend.MVC.Menu.MenuElementWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.Menu.MenuElementView"]
-}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Menu.MenuElementView");
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.Menu.MenuElementView"]
+});

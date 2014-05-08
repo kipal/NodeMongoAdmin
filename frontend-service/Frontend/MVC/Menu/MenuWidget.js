@@ -62,17 +62,12 @@ module.exports = new Service.ClientScript(
 
         return MenuWidget;
     }
-).dep(
-    "Contour.Frontend.MVC.CommonWidget",
-    "Service.Frontend.MVC.Menu.CollectionsMenuWidget",
-    "Service.Frontend.MVC.Menu.DataMenuWidget",
-    "Service.Frontend.MVC.Menu.MenuView"
-).out({
+).signUp({
     "name" : "Frontend.MVC.Menu.MenuWidget",
     "dep"  : [
-          "Contour.Frontend.MVC.CommonWidget",
-          "Frontend.MVC.Menu.CollectionsMenuWidget",
-          "Frontend.MVC.Menu.DataMenuWidget",
-          "Frontend.MVC.Menu.MenuView"
+        "Contour.Frontend.MVC.CommonWidget",
+        "Service.Frontend.MVC.Menu.CollectionsMenuWidget",
+        "Service.Frontend.MVC.Menu.DataMenuWidget",
+        "Service.Frontend.MVC.Menu.MenuView"
     ]
-}).signUp();
+});

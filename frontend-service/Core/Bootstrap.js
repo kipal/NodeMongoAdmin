@@ -26,7 +26,7 @@ module.exports = new Service.ClientScript(
         document.addEventListener("DOMContentLoaded", bootstrap.run, true);
         </publish> */
     }
-).setName("Core.Bootstrap")
-.setDependencies(["Contour.Core.Bootstrap", "Frontend.MVC.BodyWidget", "Contour.Frontend.MVC.HeadWidget"])
-.signUp()
-.dep("Contour.Core.Bootstrap", "Service.Frontend.MVC.BodyWidget", "Contour.Frontend.MVC.HeadWidget");
+).signUp({
+    name : "Core.Bootstrap",
+    dep  : ["Contour.Core.Bootstrap", "Service.Frontend.MVC.BodyWidget", "Contour.Frontend.MVC.HeadWidget"]
+});

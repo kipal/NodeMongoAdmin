@@ -19,8 +19,7 @@ module.exports = new Service.ClientScript(
 
         return WorkAreaWidget;
     }
-).out({
+).signUp({
     "name" : "Frontend.MVC.WorkArea.WorkAreaWidget",
-    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Frontend.MVC.WorkArea.WorkAreaView"]
-}).dep("Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.WorkArea.WorkAreaView")
-.signUp();
+    "dep"  : ["Contour.Frontend.MVC.CommonWidget", "Service.Frontend.MVC.WorkArea.WorkAreaView"]
+});

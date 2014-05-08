@@ -80,17 +80,12 @@ module.exports = new Service.ClientScript(
 
         return LeftMenuWidget;
     }
-).dep(
-    "Contour.Frontend.MVC.CommonWidget",
-    "Service.Frontend.MVC.LeftMenu.LeftMenuElementWidget",
-    "Service.Frontend.MVC.Model.MongoModel",
-    "Service.Frontend.MVC.Common.InputNode"
 ).signUp({
     "name" : "Frontend.MVC.LeftMenu.LeftMenuWidget",
     "dep"  : [
         "Contour.Frontend.MVC.CommonWidget",
-        "Frontend.MVC.LeftMenu.LeftMenuElementWidget",
-        "Frontend.MVC.Model.MongoModel",
-        "Frontend.MVC.Common.InputNode",
+        "Service.Frontend.MVC.LeftMenu.LeftMenuElementWidget",
+        "Service.Frontend.MVC.Model.MongoModel",
+        "Service.Frontend.MVC.Common.InputNode"
     ]
 });

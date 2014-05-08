@@ -54,10 +54,13 @@ module.exports = new Service.ClientScript(
 
         return BodyWidget;
     }
-)
-.out({
+).signUp({
     "name" : "Frontend.MVC.BodyWidget",
-    "dep"  : ["Contour.Frontend.MVC.BodyWidget", "Contour.Frontend.MVC.View", "Frontend.MVC.Menu.MenuWidget", "Frontend.MVC.WorkArea.WorkAreaWidget", "Frontend.MVC.LeftMenu.LeftMenuWidget"]
-})
-.dep("Contour.Frontend.MVC.BodyWidget", "Contour.Frontend.MVC.View", "Service.Frontend.MVC.Menu.MenuWidget", "Service.Frontend.MVC.WorkArea.WorkAreaWidget", "Service.Frontend.MVC.LeftMenu.LeftMenuWidget")
-.signUp();
+    "dep"  : [
+        "Contour.Frontend.MVC.BodyWidget",
+        "Contour.Frontend.MVC.View",
+        "Service.Frontend.MVC.Menu.MenuWidget",
+        "Service.Frontend.MVC.WorkArea.WorkAreaWidget",
+        "Service.Frontend.MVC.LeftMenu.LeftMenuWidget"
+    ]
+});
