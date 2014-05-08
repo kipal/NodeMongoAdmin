@@ -127,10 +127,10 @@ module.exports = new Service.ClientScript(
     "name" : "Frontend.MVC.LeftMenu.LeftMenuElementWidget",
     "dep"  : [
         "Contour.Frontend.MVC.CommonWidget",
-        "Frontend.MVC.LeftMenu.LeftMenuElementView",
-        "Frontend.MVC.LeftMenu.LeftSubMenuElementWidget",
-        "Frontend.MVC.Model.MongoModel",
-        "Frontend.MVC.Common.InputNode"
+        "Service.Frontend.MVC.LeftMenu.LeftMenuElementView",
+        "Service.Frontend.MVC.LeftMenu.LeftSubMenuElementWidget",
+        "Service.Frontend.MVC.Model.MongoModel",
+        "Service.Frontend.MVC.Common.InputNode"
     ]
 }).dep(
     "Contour.Frontend.MVC.CommonWidget",
