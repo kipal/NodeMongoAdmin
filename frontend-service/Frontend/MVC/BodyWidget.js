@@ -1,10 +1,11 @@
 module.exports = new Service.ClientScript(
-    function (BaseBodyWidget, View, MenuWidget, WorkAreaWidget, LeftMenuWidget) {
+    function (BaseBodyWidget, View, MenuWidget, WorkAreaWidget, LeftMenuWidget, IntroWidget) {
 
         function BodyWidget() {
 
 
             this.run = function () {
+
                 this.getView().addStyle(
                     "body", {
                         "background-color" : "#fff"
@@ -23,6 +24,7 @@ module.exports = new Service.ClientScript(
                             "cursor" : "pointer"
                         }
                     );
+                new IntroWidget(this.getView().appendNode("div", false), this).run();
 
                 var menuView     = this.getView().appendNode("ul");
                 var center       = this.getView().appendNode("div");
@@ -36,6 +38,7 @@ module.exports = new Service.ClientScript(
                     );
                 var leftMenuView = center.appendNode("ul");
                 var workView     = center.appendNode("div");
+
 
                 var workArea = new WorkAreaWidget(workView, this);
                 var menu     = new MenuWidget(menuView, this, workArea.getView());
@@ -61,6 +64,7 @@ module.exports = new Service.ClientScript(
         "Contour.Frontend.MVC.View",
         "Service.Frontend.MVC.Menu.MenuWidget",
         "Service.Frontend.MVC.WorkArea.WorkAreaWidget",
-        "Service.Frontend.MVC.LeftMenu.LeftMenuWidget"
+        "Service.Frontend.MVC.LeftMenu.LeftMenuWidget",
+        "Service.Frontend.MVC.Intro.IntroWidget"
     ]
 });
