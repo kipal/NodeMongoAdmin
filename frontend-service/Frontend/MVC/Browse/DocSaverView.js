@@ -32,6 +32,19 @@ module.exports = new Service.ClientScript(
             };
 
             View.call(this);
+            this.className = "docSaver";
+            this.setContent("Add new document");
+
+            this.addStyle(
+                ".docSaver",
+                {
+                    "border"      : "1px solid black",
+                    "width"       : "300px",
+                    "margin-top"  : "20px",
+                    "margin-left" : "5px",
+                    "padding"     : "5px"
+                }
+            );
 
             var box = this.appendNode("table");
             box.style.border = "1px solid grey";
