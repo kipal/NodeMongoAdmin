@@ -28,9 +28,14 @@ module.exports = new Service.ClientScript(
             this.addStyle(
                 "." + title.className,
                 {
-                    "margin"           : "0 auto",
-                    "width"            : "50%",
-                    "height"           : "100%",
+                    "margin"           : "auto",
+                    "position"         : "absolute",
+                    "top"              : 0,
+                    "bottom"           : 0,
+                    "left"             : 0,
+                    "right"            : 0,
+                    "width"            : "640px",
+                    "height"           : "480px",
                     "background-image" : this.getImgSrcForCss("intro.png"),
                     "background-repeat": "no-repeat"
                 }
