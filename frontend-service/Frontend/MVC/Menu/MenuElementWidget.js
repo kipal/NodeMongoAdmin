@@ -1,6 +1,6 @@
 module.exports = new Service.ClientScript(
     function (CommonWidget, MenuElementView) {
-        function MenuElementWidget(name, parentDom, parentWidget, workAreaSetContent) {
+        function MenuElementWidget(name, parentDom, parentWidget, centerView) {
 
             this.createView = function () {
                 MenuElementView.call(parentDom);
@@ -20,7 +20,7 @@ module.exports = new Service.ClientScript(
                 parentWidget.setOthersInactive(this);
                 this.getView().setActive();
 
-                this.polling(workAreaSetContent);
+                this.polling();
             };
 
             this.setInactive = function () {

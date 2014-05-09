@@ -1,7 +1,7 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, BrowseMenuWidget, DataMenuWidget, MenuView) {
+    function (CommonWidget, BrowseMenuWidget, StatusMenuWidget, MenuView) {
 
-        function MenuWidget(parentDom, parentWidget, workAreaView) {
+        function MenuWidget(parentDom, parentWidget, centerWidget) {
 
             this.createView = function () {
                 MenuView.call(parentDom);
@@ -10,8 +10,8 @@ module.exports = new Service.ClientScript(
             CommonWidget.call(this, parentDom, parentWidget);
 
             var menus = {
-               "browse" : new BrowseMenuWidget(this.getView().menuListNode.appendNode("li"), this, workAreaView),
-               "status" : new DataMenuWidget(this.getView().menuListNode.appendNode("li"), this, workAreaView)
+               "browse" : new BrowseMenuWidget(this.getView().menuListNode.appendNode("li"), this, centerWidget.getView()),
+               "status" : new StatusMenuWidget(this.getView().menuListNode.appendNode("li"), this, centerWidget.getView())
             };
 
 
@@ -35,17 +35,6 @@ module.exports = new Service.ClientScript(
             };
 
             this.run = function () {
-                /*this.getView().id        = "menu";
-                var title = this.getView().prependNode("div");
-                title.className = "navbar-brand";
-                title.innerHTML = "NodeMongoAdmin";
-                this.getView().className = "navbar nav navbar-inverse";
-                this.getView().addStyle(
-                    "#menu",
-                    {
-                        "color" : "grey"
-                    }
-                );*/
 
                 var cls = this.getView().appendNode("div");
                 cls.className = "cls";
@@ -53,6 +42,8 @@ module.exports = new Service.ClientScript(
                 for (var i in menus) {
                     menus[i].run();
                 }
+
+                menus.browse.setActive();
             };
 
         }
@@ -67,7 +58,7 @@ module.exports = new Service.ClientScript(
     "dep"  : [
         "Contour.Frontend.MVC.CommonWidget",
         "Service.Frontend.MVC.Menu.BrowseMenuWidget",
-        "Service.Frontend.MVC.Menu.DataMenuWidget",
+        "Service.Frontend.MVC.Menu.StatusMenuWidget",
         "Service.Frontend.MVC.Menu.MenuView"
     ]
 });

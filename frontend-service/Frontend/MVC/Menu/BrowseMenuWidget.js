@@ -1,17 +1,19 @@
 module.exports = new Service.ClientScript(
-    function (MenuElementWidget, Mongo) {
+    function (MenuElementWidget, Mongo, WorkAreaWidget, LeftMenuWidget) {
 
-        function BrowseMenuWidget(parentDom, parentWidget, workAreaView) {
+        function BrowseMenuWidget(parentDom, parentWidget, centerView) {
 
             MenuElementWidget.call(this, 'Browse', parentDom, parentWidget);
 
             this.polling = function() {
-                /*Mongo.getInstance().collections(
-                    parentWidget.getCurrentDB(),
-                    function (resp) {
-                        workAreaView.innerHTML = (resp);
-                    }
-                );*/
+                centerView.innerHTML = "";
+
+                var workArea = new WorkAreaWidget(centerView.appendNode("div"), this);
+                var leftMenu = new LeftMenuWidget(centerView.prependNode("ul"), this, workArea.getView());
+
+                leftMenu.run();
+                workArea.run();
+
             };
         }
 
@@ -22,5 +24,10 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     "name" : "Frontend.MVC.Menu.BrowseMenuWidget",
-    "dep"  : ["Service.Frontend.MVC.Menu.MenuElementWidget", "Service.Frontend.MVC.Model.MongoModel"]
+    "dep"  : [
+        "Service.Frontend.MVC.Menu.MenuElementWidget",
+        "Service.Frontend.MVC.Model.MongoModel",
+        "Service.Frontend.MVC.WorkArea.WorkAreaWidget",
+        "Service.Frontend.MVC.LeftMenu.LeftMenuWidget",
+    ]
 });

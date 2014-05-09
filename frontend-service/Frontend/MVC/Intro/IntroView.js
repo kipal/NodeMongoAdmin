@@ -23,6 +23,7 @@ module.exports = new Service.ClientScript(
 
             var title = this.appendNode("div");
             title.className = "title";
+            title.title     = "Click to continue!";
 
             this.addStyle(
                 "." + title.className,
