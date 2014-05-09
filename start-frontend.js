@@ -1,6 +1,4 @@
-require('contour-fw')({
-    basePath   : __dirname
-});
+require('contour-fw')();
 
 global.Service = {
     basePath : __dirname + "/frontend-service"
