@@ -1,7 +1,7 @@
 module.exports = new Service.ClientScript(
     function (CommonWidget, LeftMenuElementWidget, Mongo, InputNode) {
 
-        function LeftMenuWidget(parentDom, parentWidget, setCurrentDB, workAreaView) {
+        function LeftMenuWidget(parentDom, parentWidget, workAreaView) {
 
             CommonWidget.call(this, parentDom, parentWidget);
 
@@ -20,7 +20,9 @@ module.exports = new Service.ClientScript(
                         leftMenus[resp.databases[i].name].run();
                     }
 
-                    leftMenus[resp.databases[first].name].setActive();
+                    if (first) {
+                        leftMenus[resp.databases[first].name].setActive();
+                    }
 
                 }.bind(this));
             }.bind(this);

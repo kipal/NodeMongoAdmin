@@ -1,34 +1,71 @@
 module.exports = new Service.ClientScript(
-    function (View) {
+    function (View, InputNode) {
 
         function DocView(data) {
 
             View.call(this);
 
-            var newRow = function () {
-                var tmpRow = this.dataList.appendNode("tr");
+            var newRow = function (withInput, isPrepend) {
+                if (isPrepend) {
+                    var tmpRow = this.dataList.prependNode("tr");
+                } else {
+                    var tmpRow = this.dataList.appendNode("tr");
+                }
                 var tdLeft = tmpRow.appendNode("td");
                 var tdRight= tmpRow.appendNode("td");
+                var tdLast = tmpRow.appendNode("td");
+
+                tmpRow.left  = tdLeft;
+                tmpRow.right = tdRight;
+
+                if (withInput) {
+                    tmpRow.key         = tdLeft.appendNode("input");
+                    tmpRow.value       = tdRight.appendNode("input");
+                    tmpRow.key.value   = withInput.key;
+                    tmpRow.value.value = withInput.value;
+                }
 
                 tdLeft.style.border  = "1px solid #ccc";
                 tdRight.style.border = "1px solid #ccc";
+                tdLast.style.border  = "1px solid #ccc";
 
-                return {
-                    key   : tdLeft,
-                    value : tdRight
-                };
+                var minus = tdLast.appendNode("button");
+                minus.innerHTML = "-";
+                minus.onclick = function () {
+                    for (var i in this.dataList.childNodes) {
+                        if (tmpRow == this.dataList.childNodes[i]) {
+                            this.dataDeregister(tmpRow);
+                            this.dataList.removeChild(tmpRow);
+                        }
+                    }
+                }.bind(this);
+
+                return tmpRow;
             }.bind(this);
 
-            var realData = {};
+            var realData = [];
 
-            this.dataRegister = function (key, valueField) {
-                realData[key] = valueField;
+            this.dataRegister = function (row) {
+                realData.push(row);
+            };
+
+            this.dataDeregister = function (row) {
+                for (var i in realData) {
+                    if (row == realData[i]) {
+                        delete realData[i];
+                    }
+                }
             };
 
             this.getData = function () {
                 var result = {};
                 for (var i in realData) {
-                    result[i] = JSON.parse(realData[i].value);
+                    try {
+                        result[realData[i].key.value] = JSON.parse(realData[i].value.value);
+                    } catch (e) {
+                        realData[i].value.value       = '"' + realData[i].value.value + '"';
+                        result[realData[i].key.value] = JSON.parse(realData[i].value.value);
+                    }
                 }
 
                 return result;
@@ -65,17 +102,31 @@ module.exports = new Service.ClientScript(
             this.dataList.style.marginLeft = "15px";
 
             for (var i in data) {
-                var tmpRow                             = newRow();
-                var tmpValue = tmpRow.value.appendNode("input");
-                tmpRow.key.innerHTML                   = i;
-                tmpValue.value = JSON.stringify(data[i]);
+                var tmpRow     = newRow({
+                    key : i,
+                    value : JSON.stringify(data[i])
+                });
 
-                this.dataRegister(i, tmpValue);
+                this.dataRegister(tmpRow);
             }
 
             this.opRow = newRow();
-            this.opRow.key.style.fontWeight = "bold";
-            this.opRow.key.innerHTML        = "Operation";
+            this.opRow.left.style.fontWeight = "bold";
+            this.opRow.left.innerHTML        = "Operation";
+
+            var plus = this.opRow.right.appendNode("button");
+            plus.setContent("+");
+            plus.onclick = function () {
+                var tmpRow = newRow(
+                    {
+                        key   : "key",
+                        value : "\"value\""
+                    },
+                    true
+                );
+                this.dataRegister(tmpRow);
+            }.bind(this);
+
         }
 
         DocView.prototype             = View.prototype;
@@ -86,5 +137,5 @@ module.exports = new Service.ClientScript(
 )
 .signUp({
     "name" : "Frontend.MVC.Browse.DocView",
-    "dep"  : "Contour.Frontend.MVC.View"
+    "dep"  : ["Contour.Frontend.MVC.View","Service.Frontend.MVC.Common.InputNode"]
 });

@@ -1,5 +1,5 @@
 module.exports = new Service.ClientScript(
-    function (CommonWidget, CollectionsMenuWidget, DataMenuWidget, MenuView) {
+    function (CommonWidget, BrowseMenuWidget, DataMenuWidget, MenuView) {
 
         function MenuWidget(parentDom, parentWidget, workAreaView) {
 
@@ -10,8 +10,8 @@ module.exports = new Service.ClientScript(
             CommonWidget.call(this, parentDom, parentWidget);
 
             var menus = {
-               "collections" : new CollectionsMenuWidget(this.getView().menuListNode.appendNode("li"), this, workAreaView),
-               "data"        : new DataMenuWidget(this.getView().menuListNode.appendNode("li"), this, workAreaView)
+               "browse" : new BrowseMenuWidget(this.getView().menuListNode.appendNode("li"), this, workAreaView),
+               "status" : new DataMenuWidget(this.getView().menuListNode.appendNode("li"), this, workAreaView)
             };
 
 
@@ -66,7 +66,7 @@ module.exports = new Service.ClientScript(
     "name" : "Frontend.MVC.Menu.MenuWidget",
     "dep"  : [
         "Contour.Frontend.MVC.CommonWidget",
-        "Service.Frontend.MVC.Menu.CollectionsMenuWidget",
+        "Service.Frontend.MVC.Menu.BrowseMenuWidget",
         "Service.Frontend.MVC.Menu.DataMenuWidget",
         "Service.Frontend.MVC.Menu.MenuView"
     ]

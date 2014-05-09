@@ -1,8 +1,9 @@
 module.exports = new Service.ClientScript(
     function (MenuElementWidget, Mongo) {
-        function CollectionsMenuWidget(parentDom, parentWidget, workAreaView) {
 
-            MenuElementWidget.call(this, 'Collections', parentDom, parentWidget);
+        function BrowseMenuWidget(parentDom, parentWidget, workAreaView) {
+
+            MenuElementWidget.call(this, 'Browse', parentDom, parentWidget);
 
             this.polling = function() {
                 /*Mongo.getInstance().collections(
@@ -14,12 +15,12 @@ module.exports = new Service.ClientScript(
             };
         }
 
-        CollectionsMenuWidget.prototype             = MenuElementWidget.prototype;
-        CollectionsMenuWidget.prototype.constructor = CollectionsMenuWidget;
+        BrowseMenuWidget.prototype             = MenuElementWidget.prototype;
+        BrowseMenuWidget.prototype.constructor = BrowseMenuWidget;
 
-        return CollectionsMenuWidget;
+        return BrowseMenuWidget;
     }
 ).signUp({
-    "name" : "Frontend.MVC.Menu.CollectionsMenuWidget",
+    "name" : "Frontend.MVC.Menu.BrowseMenuWidget",
     "dep"  : ["Service.Frontend.MVC.Menu.MenuElementWidget", "Service.Frontend.MVC.Model.MongoModel"]
 });

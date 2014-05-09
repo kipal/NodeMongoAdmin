@@ -21,8 +21,8 @@ module.exports = new Service.ClientScript(
                     }.bind(this.getView())
                 );
 
-                new DocUpdaterWidget(this.getView().opRow.value.appendNode("button"), this).run();
-                new DocRemoverWidget(this.getView().opRow.value.appendNode("button"), this).run();
+                new DocUpdaterWidget(this.getView().opRow.right.appendNode("button"), this).run();
+                new DocRemoverWidget(this.getView().opRow.right.appendNode("button"), this).run();
             };
 
             this.getCollectionName = function() {
