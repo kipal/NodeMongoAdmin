@@ -23,13 +23,15 @@ module.exports = new Service.ClientScript(
 
             var title = this.appendNode("div");
             title.className = "title";
-            title.setContent("CLICK");
 
             this.addStyle(
                 "." + title.className,
                 {
-                    "margin" : "0 auto",
-                    "width"  : "25%"
+                    "margin"           : "0 auto",
+                    "width"            : "50%",
+                    "height"           : "100%",
+                    "background-image" : this.getImgSrcForCss("intro.png"),
+                    "background-repeat": "no-repeat"
                 }
             );
         }

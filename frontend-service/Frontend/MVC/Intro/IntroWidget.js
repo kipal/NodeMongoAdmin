@@ -18,7 +18,7 @@ module.exports = new Service.ClientScript(
 
             this.fadeOut = function () {
                 if (0 < this.getView().style.opacity) {
-                    this.getView().style.opacity -= 0.03;
+                    this.getView().style.opacity -= 0.3;
 
                     setTimeout(this.fadeOut.bind(this), 100);
                 } else {
