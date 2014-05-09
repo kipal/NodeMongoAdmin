@@ -1,12 +1,12 @@
 module.exports = new Service.ClientScript(
-    function (MenuElementWidget, Mongo, WorkAreaWidget, LeftMenuWidget) {
+    function (MenuElementWidget, WorkAreaWidget, LeftMenuWidget) {
 
         function BrowseMenuWidget(parentDom, parentWidget, centerView) {
 
             MenuElementWidget.call(this, 'Browse', parentDom, parentWidget);
 
             this.polling = function() {
-                centerView.innerHTML = "";
+                centerView.setContent("");
 
                 var workArea = new WorkAreaWidget(centerView.appendNode("div"), this);
                 var leftMenu = new LeftMenuWidget(centerView.prependNode("ul"), this, workArea.getView());
@@ -26,8 +26,7 @@ module.exports = new Service.ClientScript(
     "name" : "Frontend.MVC.Menu.BrowseMenuWidget",
     "dep"  : [
         "Service.Frontend.MVC.Menu.MenuElementWidget",
-        "Service.Frontend.MVC.Model.MongoModel",
         "Service.Frontend.MVC.WorkArea.WorkAreaWidget",
-        "Service.Frontend.MVC.LeftMenu.LeftMenuWidget",
+        "Service.Frontend.MVC.LeftMenu.LeftMenuWidget"
     ]
 });

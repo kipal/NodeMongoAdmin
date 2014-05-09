@@ -1,11 +1,17 @@
 module.exports = new Service.ClientScript(
-    function (MenuElementWidget, Mongo) {
+    function (MenuElementWidget, Mongo, StatusView) {
         function DataMenuWidget(parentDom, parentWidget, centerView) {
 
             MenuElementWidget.call(this, 'Status', parentDom, parentWidget);
 
             this.polling = function() {
-                centerView.innerHTML = "";
+                centerView.setContent("");
+
+                Mongo.getInstance().status(
+                    function (resp) {
+                        StatusView.call(centerView.appendNode("div"), resp);
+                    }
+                );
             };
         }
 
@@ -16,5 +22,9 @@ module.exports = new Service.ClientScript(
     }
 ).signUp({
     "name" : "Frontend.MVC.Menu.StatusMenuWidget",
-    "dep"  : ["Service.Frontend.MVC.Menu.MenuElementWidget", "Service.Frontend.MVC.Model.MongoModel"]
+    "dep"  : [
+        "Service.Frontend.MVC.Menu.MenuElementWidget",
+        "Service.Frontend.MVC.Model.MongoModel",
+        "Service.Frontend.MVC.Status.StatusView"
+    ]
 });
