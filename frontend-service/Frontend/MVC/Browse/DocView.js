@@ -17,6 +17,7 @@ module.exports = new Service.ClientScript(
 
                 tmpRow.left  = tdLeft;
                 tmpRow.right = tdRight;
+                tmpRow.last  = tdLast;
 
                 if (withInput) {
                     tmpRow.key         = tdLeft.appendNode("input");
@@ -117,7 +118,8 @@ module.exports = new Service.ClientScript(
 
             this.opRow = newRow();
             this.opRow.left.style.fontWeight = "bold";
-            this.opRow.left.innerHTML        = "Operation";
+            this.opRow.left.innerHTML        = "Operations";
+            this.opRow.last.setContent("");
 
             var plus = this.opRow.right.appendNode("button");
             plus.setContent("+");
