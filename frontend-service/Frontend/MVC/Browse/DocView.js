@@ -29,16 +29,21 @@ module.exports = new Service.ClientScript(
                 tdRight.style.border = "1px solid #ccc";
                 tdLast.style.border  = "1px solid #ccc";
 
-                var minus = tdLast.appendNode("button");
-                minus.innerHTML = "-";
-                minus.onclick = function () {
-                    for (var i in this.dataList.childNodes) {
-                        if (tmpRow == this.dataList.childNodes[i]) {
-                            this.dataDeregister(tmpRow);
-                            this.dataList.removeChild(tmpRow);
+                if (withInput && "_id" == withInput.key) {
+                    tmpRow.key.readOnly   = true;
+                    tmpRow.value.readOnly = true;
+                } else {
+                    var minus = tdLast.appendNode("button");
+                    minus.innerHTML = "-";
+                    minus.onclick = function () {
+                        for (var i in this.dataList.childNodes) {
+                            if (tmpRow == this.dataList.childNodes[i]) {
+                                this.dataDeregister(tmpRow);
+                                this.dataList.removeChild(tmpRow);
+                            }
                         }
-                    }
-                }.bind(this);
+                    }.bind(this);
+                }
 
                 return tmpRow;
             }.bind(this);
