@@ -39,7 +39,7 @@ module.exports = new Service.ClientScript(
             };
 
             this.addNewCollectionInput = function () {
-                var lastListItem = this.getView().collectionList.appendNode("li");
+                var lastListItem = this.getView().collectionList.prependNode("li");
                 lastListItem.className = "leftMenuElem";
                 this.getView().newCollection = lastListItem.appendNode("input", InputNode);
                 this.getView().newCollection.setPlaceHolder("New collection");

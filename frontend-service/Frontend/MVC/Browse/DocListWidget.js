@@ -10,13 +10,14 @@ module.exports = new Service.ClientScript(
             this.run = function () {
                 parentDom.innerHTML = "";
 
+                new DocSaverWidget(this.getView().appendNode("div"), this).run();
+
                 for (var i in collection) {
                     var tmp = new DocWidget(collection[i], this.getView().appendNode("div"), this);
                     tmp.run();
                     docList.push(tmp);
                 }
 
-                new DocSaverWidget(this.getView().appendNode("div"), this).run();
             };
 
             this.getCollectionName = function() {

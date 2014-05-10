@@ -38,11 +38,12 @@ module.exports = new Service.ClientScript(
             this.addStyle(
                 ".docSaver",
                 {
-                    "border"      : "1px solid black",
-                    "width"       : "300px",
-                    "margin-top"  : "20px",
-                    "margin-left" : "5px",
-                    "padding"     : "5px"
+                    "border"        : "1px solid black",
+                    "width"         : "300px",
+                    "margin-bottom" : "20px",
+                    "margin-top"    : "5px",
+                    "margin-left"   : "5px",
+                    "padding"       : "5px"
                 }
             );
 
