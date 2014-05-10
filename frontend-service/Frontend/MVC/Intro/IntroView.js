@@ -1,9 +1,9 @@
 module.exports = new Service.ClientScript(
     function (View) {
 
-        function IntroView() {
+        function IntroView(actions) {
 
-            View.call(this);
+            View.call(this, actions);
 
             this.className = "introScreen";
             this.addStyle(

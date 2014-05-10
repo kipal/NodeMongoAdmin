@@ -60,6 +60,7 @@ module.exports = new Service.ClientScript(
             };
 
             this.setInactive = function () {
+                parentWidget.getWorkAreaView().setContent("");
                 this.getView().setInactive();
             };
         }

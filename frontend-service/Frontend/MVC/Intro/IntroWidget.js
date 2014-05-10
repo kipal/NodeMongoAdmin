@@ -2,19 +2,6 @@ module.exports = new Service.ClientScript(
     function (CommonWidget, IntroView) {
 
         function IntroWidget(parentDom, parentWidget) {
-            this.createView = function () {
-                 IntroView.call(parentDom);
-            }.bind(this);
-
-            CommonWidget.call(this, parentDom, parentWidget);
-
-            this.run = function () {
-                this.getView().style.opacity = 1;
-                this.getView().setEvent(
-                    "onclick",
-                    this.fadeOut.bind(this)
-                );
-            };
 
             this.fadeOut = function () {
                 if (0 < this.getView().style.opacity) {
@@ -26,6 +13,23 @@ module.exports = new Service.ClientScript(
                 }
             };
 
+            this.actions = {
+                "onclick" : this.fadeOut.bind(this)
+            };
+
+            this.createView = function () {
+                 IntroView.call(parentDom, this.actions);
+            }.bind(this);
+
+            CommonWidget.call(this, parentDom, parentWidget);
+
+            this.run = function () {
+                this.getView().style.opacity = 1;
+                /*this.getView().setEvent(
+                    "onclick",
+                    this.fadeOut.bind(this)
+                );*/
+            };
         }
 
         IntroWidget.prototype             = CommonWidget.prototype;
