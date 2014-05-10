@@ -12,7 +12,9 @@ module.exports = new Service.ClientScript(
             var sendRequest = function (methodName, callback, params) {
                 RequestHandler.getInstance().sendRequest(
                     new Request("db", methodName, params),
-                    callback
+                    function (responseObj) {
+                        callback(responseObj.data);
+                    }
                 );
             };
 

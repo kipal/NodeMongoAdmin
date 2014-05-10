@@ -10,7 +10,7 @@ module.exports = new Service.ClientScript(
                  "#workArea",
                  {
                      "border"     : "solid 1px black",
-                     "height"     : "500px",
+                     "min-height" : "500px",
                      "width"      : "75%",
                      "float"      : "right"
                  }
