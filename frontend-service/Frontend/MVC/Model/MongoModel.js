@@ -14,6 +14,9 @@ module.exports = new Service.ClientScript(
                     new Request("db", methodName, params),
                     function (responseObj) {
                         callback(responseObj.data);
+                    },
+                    function (responseObj) {
+                        console.log("[error] " + JSON.stringify(responseObj));
                     }
                 );
             };
