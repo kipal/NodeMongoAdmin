@@ -9,14 +9,19 @@ module.exports = new Service.ClientScript(
                 return instance;
             }
 
-            var sendRequest = function (methodName, callback, params) {
+            var sendRequest = function (methodName, callback, params, errorCallback) {
                 RequestHandler.getInstance().sendRequest(
                     new Request("db", methodName, params),
                     function (responseObj) {
                         callback(responseObj.data);
                     },
                     function (responseObj) {
-                        console.log("[error] " + JSON.stringify(responseObj));
+                        if (!errorCallback) {
+                            console.log("[error] " + JSON.stringify(responseObj));
+                        } else {
+                            errorCallback(responseObj);
+                        }
+
                     }
                 );
             };
@@ -29,8 +34,8 @@ module.exports = new Service.ClientScript(
                 sendRequest("collections", callback, {"dbName" : dbName});
             };
 
-            this.status = function (callback) {
-                sendRequest("serverStatus", callback);
+            this.status = function (callback, errorCallback) {
+                sendRequest("serverStatus", callback, {}, errorCallback);
             };
 
             this.findAll = function (paramObject, callback) {

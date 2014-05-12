@@ -10,6 +10,9 @@ module.exports = new Service.ClientScript(
                 Mongo.getInstance().status(
                     function (resp) {
                         StatusView.call(centerView.appendNode("div"), resp);
+                    },
+                    function (resp) {
+                        StatusView.call(centerView.appendNode("div"), resp);
                     }
                 );
             };
