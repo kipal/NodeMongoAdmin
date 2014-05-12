@@ -7,7 +7,9 @@ module.exports = new Service.ClientScript(
 
             var leftMenus = {};
 
-            var loadDatabases = function () {
+            this.loadDatabases = function () {
+                this.getView().setContent("");
+                this.addNewNode();
                 Mongo.getInstance().listDatabases(function (resp) {
                     var first = null;
 
@@ -39,7 +41,7 @@ module.exports = new Service.ClientScript(
                 Mongo.getInstance().addDatabase(
                     this.getView().newDBName.value,
                     function (resp) {
-                        location.reload();
+                        this.loadDatabases();
                     }.bind(this)
                 );
             };
@@ -61,8 +63,10 @@ module.exports = new Service.ClientScript(
                     }
                 );
 
-                loadDatabases();
+                this.loadDatabases();
+            };
 
+            this.addNewNode = function () {
                 this.getView().newDBName = this.getView().appendNode("input", InputNode);
                 this.getView().newDBName.setPlaceHolder("New database");
                 this.getView().newDBName.style.fontSize = "10px";

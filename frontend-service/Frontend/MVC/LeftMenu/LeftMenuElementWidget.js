@@ -111,7 +111,7 @@ module.exports = new Service.ClientScript(
                     },
                     function (resp) {
                         if (true === resp) {
-                            location.reload();
+                            parentWidget.loadDatabases();
                         }
                     }.bind(this)
                 );
