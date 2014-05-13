@@ -17,6 +17,7 @@ module.exports = new Service.ClientScript(
                     },
                     function (responseObj) {
                         if (!errorCallback) {
+                            alert("[error] " + JSON.stringify(responseObj));
                             console.log("[error] " + JSON.stringify(responseObj));
                         } else {
                             errorCallback(responseObj);
